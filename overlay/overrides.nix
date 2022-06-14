@@ -18,7 +18,7 @@ let
       installTargets = "install_sw";
       outputs = [ "dev" "out" "bin" ];
       postInstall = ''
-        mkdir -p $out/etc/ssl/misc
+        mkdir -p $out/etc/ssl/{misc,certs,private}
         ${drv.postInstall}
       '';
       # Remove binaries, we need only libraries.
