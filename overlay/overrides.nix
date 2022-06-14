@@ -17,6 +17,10 @@ let
     }).overrideAttrs (drv: {
       installTargets = "install_sw";
       outputs = [ "dev" "out" "bin" ];
+      postInstall = ''
+        mkdir -p $out/etc/ssl/misc
+        ${drv.postInstall}
+      '';
       # Remove binaries, we need only libraries.
       postFixup = ''
         ${drv.postFixup}
